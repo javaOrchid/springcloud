@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eureka.client.clientone.dao.UserDao" >
+    <resultMap id="BaseResultMap" type="com.eureka.client.clientone.entity.User" >
+        <id column="userId" property="userId"  />
+        <result column="staffName" property="staffName"  />
+        <result column="mobilePhone" property="mobilePhone"  />
+        <result column="staffId" property="staffId"/>
+        <result column="createTime" property="createTime" />
+
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        userId, staffName, mobilePhone, staffId, createTime
+    </sql>
+
+    <sql id="Base_Where_List">
+        <if test="staffName != null  and staffName != ''">
+            and staffName = #{staffName}
+        </if>
+        <if test="staffId != null and staffId != ''">
+            and staffId = #{staffId}
+        </if>
+    </sql>
+
+    <select id="getUserList" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM cs_admin_user
+    </select>
+
+<!--    <select id="getList" resultMap="BaseResultMap" parameterType="com.neo.param.UserParam">
+        select
+        <include refid="Base_Column_List" />
+        from users
+        where 1=1
+        <include refid="Base_Where_List" />
+        order by id desc
+        limit #{beginLine} , #{pageSize}
+    </select>-->
+
+<!--    <select id="getCount" resultType="Integer" parameterType="com.neo.param.UserParam">
+        select
+        count(1)
+        from users
+        where 1=1
+        <include refid="Base_Where_List" />
+    </select>-->
+
+
+</mapper>

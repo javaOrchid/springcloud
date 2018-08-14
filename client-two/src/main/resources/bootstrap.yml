@@ -1,0 +1,26 @@
+server:
+  port: 8771
+spring:
+  application:
+    name: saleplat
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
+      uri: http://peer1:8790/
+      #对应config server所获取的配置文件中的{profile}
+      profile: test
+      #对应config server所获取的配置文件中的{lable}
+      label: test
+  profiles:
+    active: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://gzy:111111@peer1:8760/eureka/
+  instance:
+    prefer-ip-address: true
+#关闭安全验证
+management:
+  security:
+    enabled: false

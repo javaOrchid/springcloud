@@ -1,0 +1,36 @@
+server:
+  port: 8790
+
+spring:
+  profiles:
+    active: subversion
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        encrypt: true
+        svn:
+          search-paths: trunk
+          uri: http://192.168.30.88/svn/project/config_file
+          username: config
+          password: qiandao@1234
+        #native:
+          #search-locations: C:/Users/qiandao/reposity/reposity
+
+        #git:
+          #uri: https://github.com/Dayugu/reposity.git
+          #search-paths: shared
+#debug: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://gzy:111111@peer1:8760/eureka/
+encrypt:
+  key: foo
+logging:
+  levels:
+    org.springframework.boot.env.PropertySourcesLoader: TRACE
+    org.springframework.cloud.config.server: DEBUG
+
+
